@@ -1,0 +1,22 @@
+/* Đảm bảo body và html có chiều cao 100% để ảnh phủ đầy */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Đặt background là hình ảnh SVG hoặc bất kỳ hình ảnh nào bạn muốn */
+body {
+  background: url('/public/models/background.svg') no-repeat center center fixed;
+  background-size: cover; /* Đảm bảo ảnh lấp đầy màn hình */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Đảm bảo canvas không ảnh hưởng tới bố cục */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
