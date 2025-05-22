@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@pmndrs/assets": "^1.7.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -14,7 +15,8 @@
     "three": "^0.175.0",
     "three-stdlib": "^2.35.15",
     "web-vitals": "^2.1.4",
-    "webpack": "^5.99.5"
+    "webpack": "^5.99.5",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
