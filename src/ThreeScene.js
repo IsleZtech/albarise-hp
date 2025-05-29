@@ -60,36 +60,32 @@ const ThreeScene = () => {
         path: '/models/クマ3.glb',
         position: { x: 12, y: -16, z: 0 },
         scale: { x: 50, y: 50, z: 50 },
-        timeScale: 2.0, // timespeed
+        timeScale: 2.5, // timespeed
         cameraZoom: 4,
-        renderOrder: 2,
         isLooping: false,
       },
       {
         path: '/models/パソコン2.glb',
-        position: { x: 1, y: -13, z: 2 },
+        position: { x: 2, y: -13, z: 2 },
         scale: { x: 12, y: 12, z: 12 },
-        timeScale: 2.0, // timespeed
+        timeScale: 2.5, // timespeed
         cameraZoom: 4,
-        renderOrder: 3,
         isLooping: false,
       },
       {
         path: '/models/卵3.glb',
         position: { x: -15, y: -12, z: 0 },
         scale: { x: 0.8, y: 0.8, z: 0.8 },
-        timeScale: 14.0, // timespeed
+        timeScale: 14.5, // timespeed
         cameraZoom: 2,
-        renderOrder: 4,
         isLooping: false,
       },
       {
         path: '/models/ロゴ3.glb',
         position: { x: 0, y: -10, z: -5 },
         scale: { x: 70, y: 70, z: 70 },
-        timeScale: 2.0, // timespeed
+        timeScale: 2.5, // timespeed
         cameraZoom: 5,
-        renderOrder: 1,
         isLooping: true,
       },
     ];
@@ -107,12 +103,6 @@ const ThreeScene = () => {
             option.position.z
           );
           model.scale.set(option.scale.x, option.scale.y, option.scale.z);
-          model.traverse((child) => {
-            if (child.isMesh) {
-              child.renderOrder = option.renderOrder || 0;
-              child.material.depthTest = option.depthTest !== false;
-            }
-          });
           camera.position.z = Math.max(
             camera.position.z,
             option.cameraZoom || 20
