@@ -73,11 +73,11 @@ const ThreeScene = () => {
         isLooping: false,
       },
       {
-        path: '/models/卵3.glb',
-        position: { x: -15, y: -12, z: 0 },
-        scale: { x: 0.8, y: 0.8, z: 0.8 },
-        timeScale: 14.5, // timespeed
-        cameraZoom: 2,
+        path: '/models/卵6.glb',
+        position: { x: -20, y: -12, z: -12 },
+        scale: { x: 2, y: 2, z: 2 },
+        timeScale: 2, // timespeed
+        cameraZoom: 10,
         isLooping: false,
       },
       {
