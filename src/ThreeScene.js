@@ -75,9 +75,9 @@ const ThreeScene = () => {
       {
         path: '/models/卵6.glb',
         position: { x: -20, y: -12, z: -12 },
-        scale: { x: 2, y: 2, z: 2 },
-        timeScale: 2, // timespeed
-        cameraZoom: 10,
+        scale: { x: 3, y: 3, z: 3 },
+        timeScale: 1, // timespeed
+        cameraZoom: 1,
         isLooping: false,
       },
       {
