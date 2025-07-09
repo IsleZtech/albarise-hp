@@ -57,34 +57,34 @@ const ThreeScene = () => {
 
     const options = [
       {
-        path: '/models/クマ3.glb',
-        position: { x: 12, y: -16, z: 0 },
-        scale: { x: 50, y: 50, z: 50 },
-        timeScale: 2.5, // timespeed
-        cameraZoom: 4,
-        isLooping: false,
-      },
-      {
-        path: '/models/パソコン2.glb',
-        position: { x: 2, y: -13, z: 2 },
-        scale: { x: 12, y: 12, z: 12 },
-        timeScale: 2.5, // timespeed
-        cameraZoom: 4,
-        isLooping: false,
-      },
-      {
-        path: '/models/卵6.glb',
-        position: { x: -20, y: -12, z: -12 },
-        scale: { x: 3, y: 3, z: 3 },
+        path: '/models/クマ4.glb',
+        position: { x: 10, y: -11, z: 2 },
+        scale: { x: 3, y: 3, z: 4 },
         timeScale: 1, // timespeed
         cameraZoom: 1,
         isLooping: false,
       },
       {
-        path: '/models/ロゴ3.glb',
-        position: { x: 0, y: -10, z: -5 },
-        scale: { x: 70, y: 70, z: 70 },
-        timeScale: 2.5, // timespeed
+        path: '/models/パソコン3.glb',
+        position: { x: 4, y: -11, z: 2 },
+        scale: { x: 3, y: 3, z: 4 },
+        timeScale: 1, // timespeed
+        cameraZoom: 1,
+        isLooping: false,
+      },
+      {
+        path: '/models/玉子7.glb',
+        position: { x: -10, y: -8, z: 1 },
+        scale: { x: 1.5, y: 1.5, z: 1 },
+        timeScale: 1, // timespeed
+        cameraZoom: 1,
+        isLooping: false,
+      },
+      {
+        path: '/models/ロゴ4.glb',
+        position: { x: 0, y: 0, z: -2 },
+        scale: { x: 3, y: 3, z: 3 },
+        timeScale: 1, // timespeed
         cameraZoom: 5,
         isLooping: true,
       },
