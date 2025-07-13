@@ -4,7 +4,10 @@ import AlbarizeImage from "../../../assets/image/top/albarize.png";
 import SinceImage from "../../../assets/image/top/since.png";
 import DescriptionImage from "../../../assets/image/top/description.png";
 
-const Title = () => {
+type TitleProps = {
+  isActive?: boolean;
+};
+const Title = ({ isActive }: TitleProps) => {
   return (
     <>
       {/* 背景レイヤー（since_imageのみ表示） */}
@@ -20,23 +23,24 @@ const Title = () => {
           src={SinceImage}
           alt="since"
           priority
-          className={styles.since_image}
+          className={`${styles.since_image} ${isActive ? styles.show : ""}`}
         />
         <Image
           src={DescriptionImage}
           alt="description"
           priority
-          className={styles.description_image}
+          className={`${styles.description_image} ${
+            isActive ? styles.show : ""
+          }`}
         />
       </div>
-
       {/* 前面レイヤー（albarize_imageのみ表示） */}
       <div className={styles.title_container} style={{ zIndex: "2" }}>
         <Image
           src={AlbarizeImage}
           alt="albarize"
           priority
-          className={styles.albarize_image}
+          className={`${styles.albarize_image} ${isActive ? styles.show : ""}`}
         />
         <Image
           src={SinceImage}

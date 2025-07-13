@@ -27,10 +27,7 @@ const MenuModal = ({ setModalOpen }: MenuModalProps) => {
     <button className={styles.main} onClick={handleCloseClick}>
       <div className={styles.container} onClick={(e) => e.stopPropagation()}>
         {/* 閉じるボタン */}
-        <button
-          className={styles.close_container}
-          onClick={() => setModalOpen(false)}
-        >
+        <button className={styles.close_container} onClick={handleCloseClick}>
           <Image
             src={CloseIcon}
             alt="sns"
@@ -43,14 +40,31 @@ const MenuModal = ({ setModalOpen }: MenuModalProps) => {
         <div className={styles.menu_item_main}>
           <div className={styles.menu_item_container}>
             {menuItems.slice(0, 6).map((data, index) => (
-              <Link href={data.href} key={index} className={styles.menu_item}>
+              <Link
+                href={data.href}
+                onClick={handleCloseClick}
+                key={index}
+                className={styles.menu_item}
+                style={{
+                  opacity: `${data.page != "none" ? "1" : "0.3"}`,
+                  pointerEvents: `${data.page != "none" ? "auto" : "none"}`,
+                }}
+              >
                 - {data.title}
               </Link>
             ))}
           </div>
           <div className={styles.menu_item_container}>
             {menuItems.slice(6).map((data, index) => (
-              <Link href={data.href} key={index} className={styles.menu_item}>
+              <Link
+                href={data.href}
+                key={index}
+                className={styles.menu_item}
+                style={{
+                  opacity: `${data.page != "none" ? "1" : "0.3"}`,
+                  pointerEvents: `${data.page != "none" ? "auto" : "none"}`,
+                }}
+              >
                 - {data.title}
               </Link>
             ))}
@@ -83,12 +97,12 @@ const MenuModal = ({ setModalOpen }: MenuModalProps) => {
 export default MenuModal;
 
 const menuItems = [
-  { href: "/creator", title: "TOP" },
-  { href: "/business", title: "BUSINESS" },
-  { href: "/blog", title: "BLOG" },
-  { href: "/contact", title: "CONTACT" },
-  { href: "/recruit", title: "RECRUIT" },
-  { href: "/company", title: "COMPANY" },
-  { href: "/about", title: "ABOUT" },
-  { href: "/work", title: "WORK" },
+  { href: "/", title: "TOP" },
+  { href: "/business", title: "BUSINESS", page: "none" },
+  { href: "/blog", title: "BLOG", page: "none" },
+  { href: "/contact", title: "CONTACT", page: "none" },
+  { href: "/recruit", title: "RECRUIT", page: "none" },
+  { href: "/company", title: "COMPANY", page: "none" },
+  { href: "/about", title: "ABOUT", page: "none" },
+  { href: "/work", title: "WORK", page: "none" },
 ];

@@ -13,19 +13,40 @@
   width: 80vw;
   height: auto;
   position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
 }
 
 .since_image {
   width: 36vw;
   height: auto;
-  position: fixed;
-  margin-top: 30px;
   position: relative;
+  margin-top: 30px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 2s ease-out;
 }
+
 .description_image {
   width: 50vw;
   height: auto;
-  position: fixed;
-  margin-top: 30px;
   position: relative;
+  margin-top: 30px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 3s ease-out;
+}
+
+.albarize_image.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.since_image.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.description_image.show {
+  opacity: 1;
+  transform: translateY(0);
 }

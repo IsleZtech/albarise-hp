@@ -8,8 +8,8 @@
   gap: 20px;
 }
 .loader {
-  width: 50px;
-  height: 50px;
+  width: 5vw;
+  height: 5vw;
   position: relative;
   animation: spin 1s linear infinite;
   background-size: cover;
@@ -17,12 +17,23 @@
   background-repeat: no-repeat;
   background-image: url("../../assets/image/logo.png");
 }
-
+.fadeOut {
+  animation: fadeOut 0.8s ease-out forwards;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+/* アニメーション定義 */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

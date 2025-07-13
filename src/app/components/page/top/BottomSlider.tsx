@@ -2,13 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import SliderContents from "../../../assets/image/top/liver_recruit.png";
 import styles from "../../../styles/page/top/BottomSlider.module.css";
-const SliderContainer = () => {
+
+type SliderContainerProps = {
+  isActive?: boolean;
+};
+const SliderContainer = ({ isActive }: SliderContainerProps) => {
   return (
     <Link
       href={"https://nextlive-official.jp/"}
       onClick={(e) => e.stopPropagation()}
       target="_blank"
-      className={styles.container}
+      className={`${styles.container} ${isActive != false ? styles.show : ""}`}
     >
       <div className={styles.scrollingImages}>
         {[...Array(10)].map((_, index) => (
