@@ -4,7 +4,12 @@ import SliderContents from "../../../assets/image/top/liver_recruit.png";
 import styles from "../../../styles/page/top/BottomSlider.module.css";
 const SliderContainer = () => {
   return (
-    <Link href={"/"} className={styles.container}>
+    <Link
+      href={"https://nextlive-official.jp/"}
+      onClick={(e) => e.stopPropagation()}
+      target="_blank"
+      className={styles.container}
+    >
       <div className={styles.scrollingImages}>
         {[...Array(10)].map((_, index) => (
           <Image

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Krona";
+  src: url("../app/assets/font/KronaOne-Regular.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
 .main {
   height: 100vh;
   width: 100%;
@@ -53,12 +60,8 @@
   height: calc(25vw * 0.1693);
   right: 3%;
   bottom: 15%;
+  transition: transform 0.1s ease-in-out; /* アニメーション追加 */
 }
-.cursorFollower {
-  position: fixed;
-  pointer-events: none; /* クリックを通す */
-  z-index: 9999;
-  transform: translate(-50%, -50%); /* 中央に配置 */
-  width: 40px; /* サイズ指定 */
-  height: auto;
+.click_button:active {
+  transform: scale(0.95); /* 5%縮小 */
 }

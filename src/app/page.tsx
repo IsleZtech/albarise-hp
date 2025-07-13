@@ -13,31 +13,19 @@ import MainObject from "./assets/image/top/main_object.png";
 import styles from "./page.module.css";
 import Image from "next/image";
 import { isVisible } from "@testing-library/user-event/dist/utils";
+import MenuModal from "./components/commont/MenuModal";
+import Link from "next/link";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { landscape } = useWindowResize();
-  const [mousePos, setMousePos] = useState({ x: -100, y: -100 }); // 画面外に初期配置
-  const [mounted, setMounted] = useState(false);
-
-  if (!isVisible) return null;
-
-  useEffect(() => {
-    setMounted(true);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   if (landscape === null) return <main></main>;
   if (landscape === "landscape-prompt") return <main></main>;
 
   return (
-    <main className={styles.main}>
+    <main className={styles.main} onClick={() => setIsMenuOpen(true)}>
       {/* <Loading /> */}
       <Image src={LogoImage} alt="B1" priority className={styles.logo_image} />
       <Title />
@@ -47,15 +35,22 @@ export default function Home() {
         priority
         className={styles.main_object}
       />
-      <Image
-        src={TiktokImage}
-        alt="メインオブジェクト"
-        priority
-        className={styles.tiktok_image}
-      />
-      <Cursor />
+      <Link
+        href={"https://www.tiktok.com/@next_live_agency"}
+        target="_blank"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          src={TiktokImage}
+          alt="メインオブジェクト"
+          priority
+          className={styles.tiktok_image}
+        />
+      </Link>
+      {!isMenuOpen && <Cursor />}
       <button className={styles.click_button} />
       <SliderContainer />
+      {isMenuOpen && <MenuModal setModalOpen={setIsMenuOpen} />}
     </main>
   );
 }
