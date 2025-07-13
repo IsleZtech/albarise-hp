@@ -1,7 +1,6 @@
-import React from 'react';
-import ThreeScene from './ThreeScene';
-import './App.css'; // Import file CSS vào trong App.js
-
+import React from "react";
+import ThreeScene from "./ThreeScene";
+import "./App.css"; // Import file CSS vào trong App.js
 
 function App() {
   return (
