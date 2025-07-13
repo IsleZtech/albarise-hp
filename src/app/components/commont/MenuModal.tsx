@@ -13,9 +13,10 @@ import { animateLevel } from "../../hooks/animations";
 
 type MenuModalProps = {
   setModalOpen: (value: boolean) => void;
+  isMobile: boolean;
 };
 
-const MenuModal = ({ setModalOpen }: MenuModalProps) => {
+const MenuModal = ({ setModalOpen, isMobile }: MenuModalProps) => {
   const pathname = usePathname();
   const [isAnimation, setIsAnimation] = useState(false);
   useEffect(() => animateLevel(setIsAnimation), []);
@@ -23,53 +24,108 @@ const MenuModal = ({ setModalOpen }: MenuModalProps) => {
     e.stopPropagation();
     setModalOpen(false);
   };
+  const addMobileClass = (baseClassName: string) => {
+    return !isMobile ? baseClassName : `${baseClassName} ${styles.sf}`;
+  };
   return (
     <button className={styles.main} onClick={handleCloseClick}>
-      <div className={styles.container} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={addMobileClass(styles.container)}
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* 閉じるボタン */}
         <button
-          className={styles.close_container}
-          onClick={() => setModalOpen(false)}
+          className={addMobileClass(styles.close_container)}
+          onClick={handleCloseClick}
         >
           <Image
             src={CloseIcon}
             alt="sns"
             priority
-            className={styles.close_icon}
+            className={addMobileClass(styles.close_icon)}
           />
           CLOSE
         </button>
         {/* 中央のボタン */}
-        <div className={styles.menu_item_main}>
-          <div className={styles.menu_item_container}>
-            {menuItems.slice(0, 6).map((data, index) => (
-              <Link href={data.href} key={index} className={styles.menu_item}>
-                - {data.title}
-              </Link>
-            ))}
-          </div>
-          <div className={styles.menu_item_container}>
-            {menuItems.slice(6).map((data, index) => (
-              <Link href={data.href} key={index} className={styles.menu_item}>
-                - {data.title}
-              </Link>
-            ))}
-          </div>
+        <div className={addMobileClass(styles.menu_item_main)}>
+          {isMobile && (
+            <div className={addMobileClass(styles.menu_item_container)}>
+              {menuItems_sf.map((data, index) => (
+                <Link
+                  href={data.href}
+                  onClick={handleCloseClick}
+                  key={index}
+                  className={addMobileClass(styles.menu_item)}
+                  style={{
+                    opacity: `${data.page != "none" ? "1" : "0.3"}`,
+                    pointerEvents: `${data.page != "none" ? "auto" : "none"}`,
+                  }}
+                >
+                  - {data.title}
+                </Link>
+              ))}
+            </div>
+          )}
+          {!isMobile && (
+            <div className={addMobileClass(styles.menu_item_container)}>
+              {menuItems.slice(0, 6).map((data, index) => (
+                <Link
+                  href={data.href}
+                  onClick={handleCloseClick}
+                  key={index}
+                  className={addMobileClass(styles.menu_item)}
+                  style={{
+                    opacity: `${data.page != "none" ? "1" : "0.3"}`,
+                    pointerEvents: `${data.page != "none" ? "auto" : "none"}`,
+                  }}
+                >
+                  - {data.title}
+                </Link>
+              ))}
+            </div>
+          )}
+          {!isMobile && (
+            <div className={addMobileClass(styles.menu_item_container)}>
+              {menuItems.slice(6).map((data, index) => (
+                <Link
+                  href={data.href}
+                  key={index}
+                  className={addMobileClass(styles.menu_item)}
+                  style={{
+                    opacity: `${data.page != "none" ? "1" : "0.3"}`,
+                    pointerEvents: `${data.page != "none" ? "auto" : "none"}`,
+                  }}
+                >
+                  - {data.title}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         {/* 下部の右のtiktokなど */}
-        <div className={styles.bottom_righat_container}>
-          <Image src={tiktok} alt="tikok" className={styles.tiktok} priority />
-          <Image src={since} alt="since" className={styles.since} priority />
+        <div className={addMobileClass(styles.bottom_righat_container)}>
+          <Image
+            src={tiktok}
+            alt="tikok"
+            className={addMobileClass(styles.tiktok)}
+            priority
+          />
+          <Image
+            src={since}
+            alt="since"
+            className={addMobileClass(styles.since)}
+            priority
+          />
         </div>
         {/* 下部のスライダー */}
-        <div className={styles.slider_container}>
-          <div className={styles.scrollingImages}>
+        <div className={addMobileClass(styles.slider_container)}>
+          <div className={addMobileClass(styles.scrollingImages)}>
             {[...Array(10)].map((_, index) => (
               <Image
                 key={index}
                 src={logo}
                 alt="Slider"
-                className={styles.scrollImage}
+                className={addMobileClass(styles.scrollImage)}
                 priority
               />
             ))}
@@ -83,12 +139,22 @@ const MenuModal = ({ setModalOpen }: MenuModalProps) => {
 export default MenuModal;
 
 const menuItems = [
-  { href: "/creator", title: "TOP" },
-  { href: "/business", title: "BUSINESS" },
-  { href: "/blog", title: "BLOG" },
-  { href: "/contact", title: "CONTACT" },
-  { href: "/recruit", title: "RECRUIT" },
-  { href: "/company", title: "COMPANY" },
-  { href: "/about", title: "ABOUT" },
-  { href: "/work", title: "WORK" },
+  { href: "/", title: "TOP" },
+  { href: "/business", title: "BUSINESS", page: "none" },
+  { href: "/blog", title: "BLOG", page: "none" },
+  { href: "/contact", title: "CONTACT", page: "none" },
+  { href: "/recruit", title: "RECRUIT", page: "none" },
+  { href: "/company", title: "COMPANY", page: "none" },
+  { href: "/about", title: "ABOUT", page: "none" },
+  { href: "/work", title: "WORK", page: "none" },
+];
+const menuItems_sf = [
+  { href: "/", title: "TOP" },
+  { href: "/about", title: "ABOUT", page: "none" },
+  { href: "/business", title: "BUSINESS", page: "none" },
+  { href: "/work", title: "WORK", page: "none" },
+  { href: "/blog", title: "BLOG", page: "none" },
+  { href: "/contact", title: "CONTACT", page: "none" },
+  { href: "/recruit", title: "RECRUIT", page: "none" },
+  { href: "/company", title: "COMPANY", page: "none" },
 ];

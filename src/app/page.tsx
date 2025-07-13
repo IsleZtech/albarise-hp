@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useWindowResize } from "./hooks/animations";
 import Loading from "./components/commont/Loading";
 import SliderContainer from "./components/page/top/BottomSlider";
@@ -19,22 +19,50 @@ import Link from "next/link";
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [animationState, setAnimationState] = useState<number>(0);
   const { landscape } = useWindowResize();
 
-  if (landscape === null) return <main></main>;
-  if (landscape === "landscape-prompt") return <main></main>;
+  useEffect(() => {
+    setTimeout(() => setAnimationState(1), 900); // loading
+    setTimeout(() => setAnimationState(2), 1200); // fadeIn
+    setTimeout(() => setAnimationState(3), 2500); // scaleUp
+    setTimeout(() => setAnimationState(4), 3700); // rotate
+    setTimeout(() => setAnimationState(5), 4500); // rotate
+  }, []);
 
+  if (landscape === null) return <main></main>;
+  const isMobile = landscape == "mobile";
+  const addMobileClass = (baseClassName: string) => {
+    return !isMobile ? baseClassName : `${baseClassName} ${styles.sf}`;
+  };
   return (
     <main className={styles.main} onClick={() => setIsMenuOpen(true)}>
-      {/* <Loading /> */}
-      <Image src={LogoImage} alt="B1" priority className={styles.logo_image} />
-      <Title />
+      {animationState <= 2 && (
+        <Loading isFadeOut={animationState != 0} isMobile={isMobile} />
+      )}
       <Image
-        src={MainObject}
-        alt="メインオブジェクト"
+        src={LogoImage}
+        alt="B1"
         priority
-        className={styles.main_object}
+        className={`${addMobileClass(styles.logo_image)} ${
+          animationState >= 5 ? styles.show : ""
+        }`}
       />
+      <Title isActive={animationState >= 4} isMobile={isMobile} />
+      <div
+        className={`${addMobileClass(styles.main_object_container)} ${
+          animationState >= 2 ? styles.fadeIn : ""
+        }  ${animationState >= 3 ? addMobileClass(styles.scaleUp) : ""} `}
+      >
+        <Image
+          src={MainObject}
+          alt="メインオブジェクト"
+          priority
+          className={`${addMobileClass(styles.main_object_item)}  ${
+            animationState >= 3 ? styles.rotate : ""
+          }`}
+        />
+      </div>
       <Link
         href={"https://www.tiktok.com/@next_live_agency"}
         target="_blank"
@@ -42,15 +70,23 @@ export default function Home() {
       >
         <Image
           src={TiktokImage}
-          alt="メインオブジェクト"
+          alt="TikTok"
           priority
-          className={styles.tiktok_image}
+          className={`${addMobileClass(styles.tiktok_image)} ${
+            animationState >= 5 ? styles.show : ""
+          }`}
         />
       </Link>
       {!isMenuOpen && <Cursor />}
-      <button className={styles.click_button} />
-      <SliderContainer />
-      {isMenuOpen && <MenuModal setModalOpen={setIsMenuOpen} />}
+      <button
+        className={`${addMobileClass(styles.click_button)} ${
+          animationState >= 5 ? styles.show : ""
+        }`}
+      />
+      <SliderContainer isActive={animationState >= 5} isMobile={isMobile} />
+      {isMenuOpen && (
+        <MenuModal setModalOpen={setIsMenuOpen} isMobile={isMobile} />
+      )}
     </main>
   );
 }

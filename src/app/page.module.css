@@ -24,17 +24,8 @@
   position: fixed;
   top: 25px;
   left: 25px;
-}
-
-.main_object {
-  width: 40vw;
-  height: auto; /* 縦横比を保持 */
-  object-fit: contain; /* 画像を枠に合わせてフィット */
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease-out;
 }
 
 .tiktok_image {
@@ -42,9 +33,10 @@
   height: 25vh;
   position: fixed;
   position: relative;
-  left: 100%;
+  left: 150%;
   top: 40%;
   transform: translate(-100%, -50%);
+  transition: left 1s ease-out;
 }
 
 .click_button {
@@ -60,8 +52,93 @@
   height: calc(25vw * 0.1693);
   right: 3%;
   bottom: 15%;
+  opacity: 0;
   transition: transform 0.1s ease-in-out; /* アニメーション追加 */
+  transition: opacity 1s ease-out;
 }
 .click_button:active {
   transform: scale(0.95); /* 5%縮小 */
+}
+
+.main_object_container {
+  width: 40vw;
+  height: 40vw;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -36%) scale(0.13);
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+.main_object_item {
+  width: 39vw;
+  height: auto;
+  object-fit: contain;
+  opacity: 1;
+  z-index: 1;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.scaleUp {
+  transform: translate(-50%, -40%) scale(1);
+  transition: transform 1.3s ease-out;
+}
+
+.rotate {
+  animation: rotateOnly 8s linear infinite !important;
+}
+
+.click_button.show,
+.logo_image.show {
+  opacity: 1;
+}
+.tiktok_image.show {
+  left: 100%;
+}
+
+@keyframes rotateOnly {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* モバイル */
+.logo_image.sf {
+  width: 150px;
+  top: 15px;
+  left: 15px;
+}
+.tiktok_image.sf {
+  height: 20vh;
+}
+.click_button.sf {
+  width: 80vw; /* 画像の実際の幅 */
+  height: calc(80vw * 0.1693);
+  right: 50%;
+  bottom: 12%;
+  transform: translate(50%, 0);
+}
+
+.main_object_item.sf {
+  width: 79vw;
+}
+.main_object_container.sf {
+  width: 80vw;
+  height: 80vw;
+  top: 46.8%;
+  transform: translate(-50%, -36%) scale(0.2);
+}
+.scaleUp.sf {
+  transform: translate(-50%, -35%) scale(1);
+  transition: transform 1.3s ease-out;
 }

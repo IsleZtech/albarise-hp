@@ -39,7 +39,7 @@
   cursor: pointer;
   z-index: 20;
   font-family: "Krona", sans-serif;
-  color: w;
+  color: black;
   border: none;
   background-color: transparent;
 }
@@ -118,4 +118,55 @@
   100% {
     transform: translateX(calc(-100% / 5));
   }
+}
+
+.container.sf {
+  width: 90vw;
+  height: 80vh;
+  border-radius: 4vw;
+}
+
+.close_container.sf {
+  font-size: 4.5vw;
+  margin: 5vw;
+  padding: 0;
+}
+.close_icon.sf {
+  width: 6vw;
+}
+
+.bottom_righat_container.sf {
+  bottom: 8vh;
+  right: 5vw;
+}
+
+.tiktok.sf {
+  width: 40vw;
+}
+
+.since.sf {
+  margin-top: 10px;
+  width: 65vw;
+}
+
+.menu_item_container.sf {
+  margin-top: 15%;
+}
+.menu_item.sf {
+  font-size: 4.8vw;
+  margin-top: 3vw;
+}
+
+.slider_container.sf {
+  position: absolute;
+  height: 4.5vh;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.scrollImage.sf {
+  height: 2vh;
+  margin-left: 4vw;
 }

@@ -2,11 +2,13 @@
   position: fixed;
   height: 8vh;
   width: 100%;
-  bottom: 0;
+  bottom: -10vh;
   left: 0;
   position: fixed;
   border-top: 1px solid black;
+  transition: bottom 0.5s ease-out;
 }
+
 .scrollingImages {
   height: 100%;
   display: inline-flex;
@@ -27,6 +29,9 @@
 .scrollingImages_off:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+.container.show {
+  bottom: 0; /* 表示位置 */
+}
 
 @keyframes scroll {
   0% {
@@ -35,4 +40,15 @@
   100% {
     transform: translateX(calc(-100% / 10));
   }
+}
+
+.container.sf {
+  height: 6vh;
+}
+
+.scrollImage {
+  padding-top: 2.5vh;
+  height: 2vh;
+  margin-left: 2vw;
+  width: auto;
 }
