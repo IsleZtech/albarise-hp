@@ -20,12 +20,15 @@
   },
   "scripts": {
     "dev": "next dev",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint --fix && format",
+    "check:eslint": "eslint --ext .tsx,.js,.ts .",
+    "check:prettier": "prettier --check .",
+    "check": "run-p --continue-on-error check:prettier check:eslint",
+    "fix": "run-s --continue-on-error fix:prettier fix:eslint",
+    "fix:eslint": "eslint --ext .tsx,.js,.ts . --fix",
+    "fix:prettier": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [
