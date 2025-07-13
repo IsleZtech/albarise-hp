@@ -23,6 +23,8 @@ export default function Home() {
   const { landscape } = useWindowResize();
 
   useEffect(() => {
+    const img = new window.Image();
+    img.src = MainObject.src;
     setTimeout(() => setAnimationState(1), 900); // loading
     setTimeout(() => setAnimationState(2), 1200); // fadeIn
     setTimeout(() => setAnimationState(3), 2500); // scaleUp
