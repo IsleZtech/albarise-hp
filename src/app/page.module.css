@@ -1,0 +1,64 @@
+.main {
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+.logo_image {
+  width: 200px;
+  height: auto; /* 縦横比を保持 */
+  object-fit: contain; /* 画像を枠に合わせてフィット */
+  position: fixed;
+  top: 25px;
+  left: 25px;
+}
+
+.main_object {
+  width: 40vw;
+  height: auto; /* 縦横比を保持 */
+  object-fit: contain; /* 画像を枠に合わせてフィット */
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  z-index: 1;
+}
+
+.tiktok_image {
+  width: auto;
+  height: 25vh;
+  position: fixed;
+  position: relative;
+  left: 100%;
+  top: 40%;
+  transform: translate(-100%, -50%);
+}
+
+.click_button {
+  background-image: url("./assets/image/top/click_button.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  position: fixed;
+  border: none;
+  cursor: pointer;
+  width: 25vw; /* 画像の実際の幅 */
+  height: calc(25vw * 0.1693);
+  right: 3%;
+  bottom: 15%;
+}
+.cursorFollower {
+  position: fixed;
+  pointer-events: none; /* クリックを通す */
+  z-index: 9999;
+  transform: translate(-50%, -50%); /* 中央に配置 */
+  width: 40px; /* サイズ指定 */
+  height: auto;
+}

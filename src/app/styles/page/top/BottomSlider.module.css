@@ -1,0 +1,38 @@
+.container {
+  position: fixed;
+  height: 8vh;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  border-top: 1px solid black;
+}
+.scrollingImages {
+  height: 100%;
+  display: inline-flex;
+  animation: scroll 10s linear infinite;
+  will-change: transform;
+  z-index: 1;
+}
+
+.scrollImage {
+  padding-top: 3vh;
+  height: 2.5vh;
+  margin-left: 2vw;
+  width: auto;
+}
+.scrollingImages_on:hover {
+  background-color: rgba(164, 123, 150, 0.25);
+}
+.scrollingImages_off:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 10));
+  }
+}

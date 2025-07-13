@@ -1,0 +1,157 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/styles/page/top/BottomSlider.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+.BottomSlider_container__5QPSm {
+  position: fixed;
+  height: 8vh;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  border-top: 1px solid black;
+}
+.BottomSlider_scrollingImages__PAx0q {
+  height: 100%;
+  display: inline-flex;
+  animation: BottomSlider_scroll__mY_hI 10s linear infinite;
+  will-change: transform;
+  z-index: 1;
+}
+
+.BottomSlider_scrollImage__D7uyr {
+  padding-top: 3vh;
+  height: 2.5vh;
+  margin-left: 2vw;
+  width: auto;
+}
+.BottomSlider_scrollingImages_on___5nOf:hover {
+  background-color: rgba(164, 123, 150, 0.25);
+}
+.BottomSlider_scrollingImages_off__FqSF8:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes BottomSlider_scroll__mY_hI {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 10));
+  }
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/styles/page/top/Title.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+.Title_title_container__LTPZZ {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 40%;
+  margin-left: 5vw;
+  transform: translate(0, -40%);
+  z-index: 0;
+}
+
+.Title_albarize_image__8pbyI {
+  width: 80vw;
+  height: auto;
+  position: relative;
+}
+
+.Title_since_image__YRPSg {
+  width: 36vw;
+  height: auto;
+  position: fixed;
+  margin-top: 30px;
+  position: relative;
+}
+.Title_description_image__wZ42v {
+  width: 50vw;
+  height: auto;
+  position: fixed;
+  margin-top: 30px;
+  position: relative;
+}
+
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/styles/page/top/Cursor.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.Cursor_cursorFollower__oM39s {
+  position: fixed;
+  pointer-events: none; /* クリックを通す */
+  z-index: 9999;
+  transform: translate(-50%, -50%); /* 中央に配置 */
+  width: 40px; /* サイズ指定 */
+  height: auto;
+}
+
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/page.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.page_main__GlU4n {
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+.page_logo_image__7pYRq {
+  width: 200px;
+  height: auto; /* 縦横比を保持 */
+  object-fit: contain; /* 画像を枠に合わせてフィット */
+  position: fixed;
+  top: 25px;
+  left: 25px;
+}
+
+.page_main_object__Wg3gw {
+  width: 40vw;
+  height: auto; /* 縦横比を保持 */
+  object-fit: contain; /* 画像を枠に合わせてフィット */
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  z-index: 1;
+}
+
+.page_tiktok_image__DV4Rb {
+  width: auto;
+  height: 25vh;
+  position: fixed;
+  position: relative;
+  left: 100%;
+  top: 40%;
+  transform: translate(-100%, -50%);
+}
+
+.page_click_button__RNc3i {
+  background-image: url(/_next/static/media/click_button.41db9c5e.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  position: fixed;
+  border: none;
+  cursor: pointer;
+  width: 25vw; /* 画像の実際の幅 */
+  height: calc(25vw * 0.1693);
+  right: 3%;
+  bottom: 15%;
+}
+.page_cursorFollower__EI1lP {
+  position: fixed;
+  pointer-events: none; /* クリックを通す */
+  z-index: 9999;
+  transform: translate(-50%, -50%); /* 中央に配置 */
+  width: 40px; /* サイズ指定 */
+  height: auto;
+}
+
