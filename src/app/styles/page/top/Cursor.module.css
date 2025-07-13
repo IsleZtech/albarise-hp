@@ -1,0 +1,8 @@
+.cursorFollower {
+  position: fixed;
+  pointer-events: none; /* クリックを通す */
+  z-index: 9999;
+  transform: translate(-50%, -50%); /* 中央に配置 */
+  width: 40px; /* サイズ指定 */
+  height: auto;
+}

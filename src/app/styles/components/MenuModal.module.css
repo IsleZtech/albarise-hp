@@ -1,0 +1,121 @@
+.main {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+}
+
+.container {
+  width: 50vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  border-radius: 1vw;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  color: black;
+}
+
+.close_container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  font-size: 1vw;
+  margin: 1.5vw;
+  cursor: pointer;
+  z-index: 20;
+  font-family: "Krona", sans-serif;
+  color: w;
+  border: none;
+  background-color: transparent;
+}
+.close_icon {
+  width: 1.4vw;
+  height: auto;
+  filter: brightness(0);
+}
+
+.bottom_righat_container {
+  position: absolute;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: end;
+  bottom: 4vw;
+  right: 2vw;
+}
+.tiktok {
+  width: 8vw;
+  height: auto;
+}
+.since {
+  margin-top: 10px;
+  width: 12vw;
+  height: auto;
+}
+.menu_item_main {
+  width: 80%;
+  flex-direction: row;
+  display: flex;
+  justify-content: start;
+}
+
+.menu_item_container {
+  margin-top: 8%;
+  margin-right: 5vw;
+  flex-direction: column;
+  display: flex;
+  align-items: start;
+}
+.menu_item {
+  font-family: "Krona", sans-serif;
+  text-decoration: none;
+  color: black;
+  font-size: 1.4vw;
+  margin-top: 2vw;
+}
+
+.slider_container {
+  position: absolute;
+  height: 4vh;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.scrollingImages {
+  height: 100%;
+  display: inline-flex;
+  animation: scroll 10s linear infinite;
+  will-change: transform;
+  z-index: 1;
+}
+
+.scrollImage {
+  height: 2.5vh;
+  margin-left: 2vw;
+  width: auto;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 5));
+  }
+}
