@@ -50,3 +50,32 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+.title_container.sf {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  position: fixed;
+  top: 22%;
+  margin-left: 5vw;
+}
+
+.albarize_image.sf {
+  width: 85vw;
+  height: auto;
+  position: relative;
+}
+
+.since_image.sf {
+  width: 50vw;
+  height: auto;
+  position: relative;
+  margin-top: 10px;
+}
+
+.description_image.sf {
+  width: 90vw;
+  height: auto;
+  position: relative;
+  margin-top: 15px;
+}

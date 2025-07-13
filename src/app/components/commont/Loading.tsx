@@ -4,13 +4,19 @@ import { container } from "webpack";
 type LoadingProps = {
   isFadeOut?: boolean;
   isBackground?: boolean;
+  isMobile: boolean;
 };
-const Loading = ({ isFadeOut, isBackground }: LoadingProps) => {
+const Loading = ({ isFadeOut, isBackground, isMobile }: LoadingProps) => {
+  const addMobileClass = (baseClassName: string) => {
+    return !isMobile ? baseClassName : `${baseClassName} ${styles.sf}`;
+  };
   return (
     <div
-      className={`${styles.main} ${isFadeOut == true ? styles.fadeOut : ""}`}
+      className={`${addMobileClass(styles.main)} ${
+        isFadeOut == true ? styles.fadeOut : ""
+      }`}
     >
-      <div className={styles.loader} />
+      <div className={addMobileClass(styles.loader)} />
     </div>
   );
 };

@@ -23,39 +23,43 @@ export default function Home() {
   const { landscape } = useWindowResize();
 
   useEffect(() => {
-    setTimeout(() => setAnimationState(1), 900); // fadeIn
+    setTimeout(() => setAnimationState(1), 900); // loading
     setTimeout(() => setAnimationState(2), 1200); // fadeIn
     setTimeout(() => setAnimationState(3), 2500); // scaleUp
-    setTimeout(() => setAnimationState(4), 3400); // rotate
-    setTimeout(() => setAnimationState(5), 5000); // rotate
+    setTimeout(() => setAnimationState(4), 3700); // rotate
+    setTimeout(() => setAnimationState(5), 4500); // rotate
   }, []);
 
   if (landscape === null) return <main></main>;
-  if (landscape === "landscape-prompt") return <main></main>;
-
+  const isMobile = landscape == "mobile";
+  const addMobileClass = (baseClassName: string) => {
+    return !isMobile ? baseClassName : `${baseClassName} ${styles.sf}`;
+  };
   return (
     <main className={styles.main} onClick={() => setIsMenuOpen(true)}>
-      {animationState <= 2 && <Loading isFadeOut={animationState != 0} />}
+      {animationState <= 2 && (
+        <Loading isFadeOut={animationState != 0} isMobile={isMobile} />
+      )}
       <Image
         src={LogoImage}
         alt="B1"
         priority
-        className={`${styles.logo_image} ${
+        className={`${addMobileClass(styles.logo_image)} ${
           animationState >= 5 ? styles.show : ""
         }`}
       />
-      <Title isActive={animationState >= 4} />
+      <Title isActive={animationState >= 4} isMobile={isMobile} />
       <div
-        className={`${styles.main_object_container} ${
+        className={`${addMobileClass(styles.main_object_container)} ${
           animationState >= 2 ? styles.fadeIn : ""
-        }  ${animationState >= 3 ? styles.scaleUp : ""} `}
+        }  ${animationState >= 3 ? addMobileClass(styles.scaleUp) : ""} `}
       >
         <Image
           src={MainObject}
           alt="メインオブジェクト"
           priority
-          className={`${styles.main_object_item}  ${
-            animationState >= 3 ? styles.rotate_down : ""
+          className={`${addMobileClass(styles.main_object_item)}  ${
+            animationState >= 3 ? styles.rotate : ""
           }`}
         />
       </div>
@@ -68,19 +72,21 @@ export default function Home() {
           src={TiktokImage}
           alt="TikTok"
           priority
-          className={`${styles.tiktok_image} ${
+          className={`${addMobileClass(styles.tiktok_image)} ${
             animationState >= 5 ? styles.show : ""
           }`}
         />
       </Link>
       {!isMenuOpen && <Cursor />}
       <button
-        className={`${styles.click_button} ${
+        className={`${addMobileClass(styles.click_button)} ${
           animationState >= 5 ? styles.show : ""
         }`}
       />
-      <SliderContainer isActive={animationState >= 5} />
-      {isMenuOpen && <MenuModal setModalOpen={setIsMenuOpen} />}
+      <SliderContainer isActive={animationState >= 5} isMobile={isMobile} />
+      {isMenuOpen && (
+        <MenuModal setModalOpen={setIsMenuOpen} isMobile={isMobile} />
+      )}
     </main>
   );
 }

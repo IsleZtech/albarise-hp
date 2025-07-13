@@ -37,3 +37,9 @@
     opacity: 0;
   }
 }
+
+.loader.sf {
+  width: 15vw;
+  height: 15vw;
+  margin-bottom: 10vh;
+}

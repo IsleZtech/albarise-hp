@@ -41,3 +41,14 @@
     transform: translateX(calc(-100% / 10));
   }
 }
+
+.container.sf {
+  height: 6vh;
+}
+
+.scrollImage {
+  padding-top: 2.5vh;
+  height: 2vh;
+  margin-left: 2vw;
+  width: auto;
+}
