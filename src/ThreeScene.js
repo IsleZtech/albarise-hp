@@ -11,6 +11,9 @@ const ThreeScene = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    // Add threescene class to body when component mounts
+    document.body.classList.add('threescene');
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -226,7 +229,7 @@ const ThreeScene = () => {
               needsRender = true;
             } else {
               // Switch to bounce phase
-              // obj.phase = 'bounce';
+              obj.phase = 'bounce';
               obj.phaseStartTime = currentTime;
             }
             break;
@@ -293,6 +296,9 @@ const ThreeScene = () => {
     };
 
     return () => {
+      // Remove threescene class from body when component unmounts
+      document.body.classList.remove('threescene');
+
       renderer.dispose();
       renderer.domElement.remove();
       controls.dispose();
