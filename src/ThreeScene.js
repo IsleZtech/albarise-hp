@@ -79,9 +79,9 @@ const ThreeScene = () => {
       },
       {
         path: '/models/玉子7.glb',
-        position: { x: -10, y: -11, z: 1 }, // Target position when hitting ground
+        position: { x: -10, y: -15, z: 1 }, // Target position when hitting ground
         startPosition: { x: -10, y: 15, z: 1 }, // Start position for falling (unified)
-        scale: { x: 2.5, y: 2.5, z: 2 },
+        scale: { x: 3, y: 3, z: 2 },
         timeScale: 1,
         cameraZoom: 1,
         isLooping: false,
@@ -229,7 +229,7 @@ const ThreeScene = () => {
               needsRender = true;
             } else {
               // Switch to bounce phase
-              obj.phase = 'bounce';
+              // obj.phase = 'bounce';
               obj.phaseStartTime = currentTime;
             }
             break;
