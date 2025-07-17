@@ -63,25 +63,25 @@ const ThreeScene = () => {
         path: '/models/クマ4.glb',
         position: { x: 10, y: -12, z: 2 }, // Target position when hitting ground
         startPosition: { x: 10, y: 15, z: 2 }, // Start position for falling (unified)
-        scale: { x: 3, y: 3, z: 2 },
+        scale: { x: 3, y: 3, z: 3 },
         timeScale: 1,
         cameraZoom: 1,
         isLooping: false,
       },
       {
-        path: '/models/パソコン3.glb',
+        path: '/models/パソコン4.glb',
         position: { x: 4, y: -11, z: 2 }, // Target position when hitting ground
         startPosition: { x: 4, y: 15, z: 2 }, // Start position for falling (unified)
-        scale: { x: 3, y: 3, z: 4 },
+        scale: { x: 3, y: 3, z: 3 },
         timeScale: 1,
         cameraZoom: 1,
         isLooping: false,
       },
       {
-        path: '/models/玉子7.glb',
-        position: { x: -10, y: -15, z: 1 }, // Target position when hitting ground
-        startPosition: { x: -10, y: 15, z: 1 }, // Start position for falling (unified)
-        scale: { x: 3, y: 3, z: 2 },
+        path: '/models/玉子8.glb',
+        position: { x: -25, y: -15, z: 10 }, // Target position when hitting ground
+        startPosition: { x: -15, y: 15, z: 1 }, // Start position for falling (unified)
+        scale: { x: 3, y: 3, z: 1 },
         timeScale: 1,
         cameraZoom: 1,
         isLooping: false,
