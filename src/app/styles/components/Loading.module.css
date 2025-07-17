@@ -1,16 +1,15 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   height: 100vh;
   width: 100vw;
-  gap: 20px;
 }
 .loader {
+  position: absolute;
   width: 5vw;
   height: 5vw;
-  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   animation: spin 1s linear infinite;
   background-size: cover;
   background-position: center;
@@ -22,10 +21,10 @@
 }
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    transform: translate(-50%, -45%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translate(-50%, -45%) rotate(360deg);
   }
 }
 /* アニメーション定義 */
@@ -41,5 +40,6 @@
 .loader.sf {
   width: 15vw;
   height: 15vw;
-  margin-bottom: 10vh;
+  top: 45%;
+  left: 50%;
 }

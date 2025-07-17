@@ -42,6 +42,7 @@ export default function Home() {
       {animationState <= 2 && (
         <Loading isFadeOut={animationState != 0} isMobile={isMobile} />
       )}
+      {/* <Loading isMobile={isMobile} /> */}
       <Image
         src={LogoImage}
         alt="B1"
