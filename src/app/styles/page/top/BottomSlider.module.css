@@ -18,7 +18,8 @@
 }
 
 .scrollImage {
-  padding-top: 3vh;
+  margin-top: 3vh;
+  padding: 0;
   height: 2.5vh;
   margin-left: 2vw;
   width: auto;
@@ -46,8 +47,8 @@
   height: 6vh;
 }
 
-.scrollImage {
-  padding-top: 2.5vh;
+.scrollImage.sf {
+  margin-top: 2.5vh;
   height: 2vh;
   margin-left: 2vw;
   width: auto;
