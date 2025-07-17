@@ -104,12 +104,15 @@ const MenuModal = ({ setModalOpen, isMobile }: MenuModalProps) => {
         </div>
         {/* 下部の右のtiktokなど */}
         <div className={addMobileClass(styles.bottom_righat_container)}>
-          <Image
-            src={tiktok}
-            alt="tikok"
-            className={addMobileClass(styles.tiktok)}
-            priority
-          />
+          <Link href={tiktokUrl}>
+            <Image
+              src={tiktok}
+              alt="tikok"
+              className={addMobileClass(styles.tiktok)}
+              priority
+            />
+          </Link>
+
           <Image
             src={since}
             alt="since"
@@ -138,10 +141,13 @@ const MenuModal = ({ setModalOpen, isMobile }: MenuModalProps) => {
 
 export default MenuModal;
 
+const tiktokUrl =
+  "https://www.tiktok.com/@next_live_agency?_t=ZS-8y0vYcJn9T2&_r=1";
+
 const menuItems = [
   { href: "/", title: "TOP" },
   { href: "/business", title: "BUSINESS", page: "none" },
-  { href: "/blog", title: "BLOG", page: "none" },
+  { href: "https://note.com/albarise_inc", title: "BLOG" },
   { href: "/contact", title: "CONTACT", page: "none" },
   { href: "/recruit", title: "RECRUIT", page: "none" },
   { href: "/company", title: "COMPANY", page: "none" },
@@ -153,7 +159,7 @@ const menuItems_sf = [
   { href: "/about", title: "ABOUT", page: "none" },
   { href: "/business", title: "BUSINESS", page: "none" },
   { href: "/work", title: "WORK", page: "none" },
-  { href: "/blog", title: "BLOG", page: "none" },
+  { href: "https://note.com/albarise_inc", title: "BLOG" },
   { href: "/contact", title: "CONTACT", page: "none" },
   { href: "/recruit", title: "RECRUIT", page: "none" },
   { href: "/company", title: "COMPANY", page: "none" },

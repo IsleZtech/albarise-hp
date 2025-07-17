@@ -10,6 +10,7 @@ import Cursor from "./components/page/top/Cursor";
 import TiktokImage from "./assets/image/top/tiktok.png";
 import cursorImage from "./assets/image/top/cursor.png";
 import MainObject from "./assets/image/top/main_object.png";
+import SliderContents from "./assets/image/top/liver_recruit.png";
 import styles from "./page.module.css";
 import Image from "next/image";
 import { isVisible } from "@testing-library/user-event/dist/utils";
@@ -17,19 +18,14 @@ import MenuModal from "./components/commont/MenuModal";
 import Link from "next/link";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [animationState, setAnimationState] = useState<number>(0);
   const { landscape } = useWindowResize();
 
   useEffect(() => {
-    const img = new window.Image();
-    img.src = MainObject.src;
-    setTimeout(() => setAnimationState(1), 900); // loading
-    setTimeout(() => setAnimationState(2), 1200); // fadeIn
-    setTimeout(() => setAnimationState(3), 2500); // scaleUp
-    setTimeout(() => setAnimationState(4), 3700); // rotate
-    setTimeout(() => setAnimationState(5), 4500); // rotate
+    preloadImages([MainObject.src, SliderContents.src]).then(() => {
+      runAnimationSequence(setAnimationState);
+    });
   }, []);
 
   if (landscape === null) return <main></main>;
@@ -42,7 +38,6 @@ export default function Home() {
       {animationState <= 2 && (
         <Loading isFadeOut={animationState != 0} isMobile={isMobile} />
       )}
-      {/* <Loading isMobile={isMobile} /> */}
       <Image
         src={LogoImage}
         alt="B1"
@@ -92,4 +87,27 @@ export default function Home() {
       )}
     </main>
   );
+}
+
+function preloadImages(sources: string[]): Promise<void> {
+  return Promise.all(
+    sources.map(
+      (src) =>
+        new Promise<void>((resolve) => {
+          const img = new window.Image();
+          img.onload = () => resolve();
+          img.onerror = () => resolve(); // 失敗しても進める
+          img.src = src;
+        })
+    )
+  ).then(() => {});
+}
+
+// アニメーションステート管理関数
+function runAnimationSequence(setState: (v: number) => void) {
+  setTimeout(() => setState(1), 900); // loading
+  setTimeout(() => setState(2), 1200); // fadeIn
+  setTimeout(() => setState(3), 2500); // scaleUp
+  setTimeout(() => setState(4), 3700); // rotate
+  setTimeout(() => setState(5), 4500); // show
 }
