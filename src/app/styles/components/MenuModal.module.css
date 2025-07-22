@@ -17,7 +17,7 @@
   height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   background-color: white;
   position: relative;
@@ -32,7 +32,7 @@
   right: 0;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   font-size: 1vw;
   margin: 1.5vw;
@@ -54,7 +54,7 @@
   width: 100%;
   flex-direction: column;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   bottom: 4vw;
   right: 2vw;
 }
@@ -71,7 +71,7 @@
   width: 80%;
   flex-direction: row;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .menu_item_container {
@@ -79,7 +79,7 @@
   margin-right: 5vw;
   flex-direction: column;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 .menu_item {
   font-family: "Krona", sans-serif;
