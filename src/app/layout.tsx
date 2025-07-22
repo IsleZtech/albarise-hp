@@ -29,8 +29,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <style dangerouslySetInnerHTML={{
-          __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
             * {
               margin: 0;
               padding: 0;
@@ -39,11 +40,10 @@ export default function RootLayout({
             html, body {
               width: 100%;
               height: 100%;
-              overflow: hidden;
-              background: transparent;
             }
-          `
-        }} />
+          `,
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>

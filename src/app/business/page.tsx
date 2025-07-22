@@ -40,7 +40,7 @@ import MenuModal from "../components/commont/MenuModal";
 import AgencysModal from "../components/page/business/AgencysModal";
 import { useHorizontalScrollWithMomentum } from "../hooks/useHorizontalScrollWithMomentum";
 
-export default function Home() {
+export default function Business() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [modalIndex, setModalIndex] = useState<number | null>(null);
   const [isMenuModal, setIsMenuModal] = useState<boolean>(false);
@@ -156,9 +156,9 @@ export default function Home() {
       >
         MENU
       </button>
-      {modalDatas.map((data, index) => (
-        <>
-          {index == modalIndex && (
+      {modalDatas.map(
+        (data, index) =>
+          index == modalIndex && (
             <CompanyModal
               setModalOpen={setModalIndex}
               isMobile={isMobile}
@@ -170,9 +170,8 @@ export default function Home() {
               webUrl={data.webUrl}
               otherButton={index == 0}
             />
-          )}
-        </>
-      ))}
+          )
+      )}
       {modalIndex == 7 && (
         <AgencysModal setModalOpen={setModalIndex} isMobile={isMobile} />
       )}

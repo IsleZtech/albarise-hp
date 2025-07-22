@@ -4,8 +4,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background: transparent;
+  /* overflow: hidden;
+  background: transparent; */
 }
 
 /* Remove default margins and padding */
@@ -24,7 +24,8 @@ canvas {
 }
 
 body.threescene {
-  background: url('../public/models/background.svg') no-repeat center center fixed !important;
+  background: url("../public/models/background.svg") no-repeat center center
+    fixed !important;
   background-size: cover !important;
   /* Đảm bảo ảnh lấp đầy màn hình */
   display: flex;
