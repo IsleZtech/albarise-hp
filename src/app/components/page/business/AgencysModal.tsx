@@ -1,7 +1,7 @@
 import { usePathname } from "next/navigation";
 
 import menuStyles from "../../../styles/components/MenuModal.module.css";
-import styles from "../../../styles/page/business/modal.module.css";
+import styles from "../../../styles/page/business/Modal.module.css";
 import CloseIcon from "../../../assets/icon/close.svg";
 import Agent1 from "../../../assets/image/business/agent_1.png";
 import Agent2 from "../../../assets/image/business/agent_2.png";
@@ -21,13 +21,8 @@ import Agent15 from "../../../assets/image/business/agent_15.png";
 import Agent16 from "../../../assets/image/business/agent_16.png";
 import Agent17 from "../../../assets/image/business/agent_17.png";
 import AgentButton from "../../../assets/image/business/agent_button.png";
-import MainImage from "../../../assets/image/business/modal_image_2.png";
-import Image, { StaticImageData } from "next/image";
-import { splitTextToSpans } from "../../../hooks/spliTextToSpans";
+import Image from "next/image";
 import Link from "next/link";
-import CompanyModal from "./CompanyModal";
-import { useEffect } from "react";
-import { preloadImages } from "../../../hooks/useImagePreload";
 
 type AgencysModalProps = {
   setModalOpen: (value: number | null) => void;
@@ -45,7 +40,7 @@ const AgencysModal = ({ setModalOpen, isMobile }: AgencysModalProps) => {
     return !isMobile ? baseClassName : `${baseClassName} ${menuStyles.sf}`;
   };
   return (
-    <button className={menuStyles.main} onClick={handleCloseClick}>
+    <div className={menuStyles.main} onClick={handleCloseClick}>
       <div
         className={addMobileClass(styles.container)}
         onClick={(e) => e.stopPropagation()}
@@ -93,7 +88,7 @@ const AgencysModal = ({ setModalOpen, isMobile }: AgencysModalProps) => {
           ))}
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 

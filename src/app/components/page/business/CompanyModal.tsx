@@ -1,9 +1,8 @@
 import { usePathname } from "next/navigation";
 
 import menuStyles from "../../../styles/components/MenuModal.module.css";
-import styles from "../../../styles/page/business/modal.module.css";
+import styles from "../../../styles/page/business/Modal.module.css";
 import CloseIcon from "../../../assets/icon/close.svg";
-import MainImage from "../../../assets/image/business/modal_image_2.png";
 import Image, { StaticImageData } from "next/image";
 import { splitTextToSpans } from "../../../hooks/spliTextToSpans";
 import Link from "next/link";
@@ -41,7 +40,7 @@ const CompanyModal = ({
     return !isMobile ? baseClassName : `${baseClassName} ${menuStyles.sf}`;
   };
   return (
-    <button className={menuStyles.main} onClick={handleCloseClick}>
+    <div className={menuStyles.main} onClick={handleCloseClick}>
       <div
         className={addMobileClass(styles.container)}
         onClick={(e) => e.stopPropagation()}
@@ -91,7 +90,7 @@ const CompanyModal = ({
           <Image alt="メイン" src={mainImage} className={styles.main_image} />
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 
