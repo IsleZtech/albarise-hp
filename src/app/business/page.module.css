@@ -13,7 +13,7 @@
 }
 
 .main_image {
-  height: 100vh;
+  height: 100svh;
   width: auto;
 }
 
@@ -26,14 +26,14 @@
 .comment_visible {
   opacity: 1;
   transform: scale(1) translateY(0);
-  animation: commentFadeIn 0.4s ease-out;
+  animation: commentFadeIn 0.4s ease-out forwards;
 }
 
 /* 非表示状態 */
 .comment_hidden {
   opacity: 0;
   transform: scale(0.8) translateY(10px);
-  animation: commentFadeOut 0.3s ease-in;
+  animation: commentFadeOut 0.4s ease-in forwards;
 }
 
 .popup {
@@ -96,4 +96,9 @@
     transform: translateY(-10px) scale(1.03); /* 最小限の動き */
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
+}
+
+.main_image.sf {
+  height: 100svh;
+  width: auto;
 }

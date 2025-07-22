@@ -38,6 +38,7 @@ import homeStyles from "../page.module.css";
 import CompanyModal from "../components/page/business/CompanyModal";
 import MenuModal from "../components/commont/MenuModal";
 import AgencysModal from "../components/page/business/AgencysModal";
+import { useHorizontalScrollWithMomentum } from "../hooks/useHorizontalScrollWithMomentum";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -45,27 +46,13 @@ export default function Home() {
   const [isMenuModal, setIsMenuModal] = useState<boolean>(false);
   const [scrollX, setScrollX] = useState<number>(0);
   const { landscape } = useWindowResize();
+  const isDisabled = modalIndex !== null || isMenuModal;
 
   useEffect(() => {
     preloadImages(mainImages).then(() => setIsLoading(false));
   }, []);
 
-  useEffect(() => {
-    if (modalIndex !== null || isMenuModal) {
-      document.body.style.overflow = "hidden";
-      return;
-    }
-    const handleWheel = (e: WheelEvent) => {
-      const scrollAmount = e.deltaY * 0.7;
-      window.scrollBy({ left: scrollAmount, behavior: "auto" });
-      setScrollX(window.scrollX);
-      e.preventDefault();
-    };
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
-  }, [modalIndex, isMenuModal]);
+  useHorizontalScrollWithMomentum({ isDisabled, onScrollXChange: setScrollX });
 
   if (landscape === null) return <main></main>;
   if (isLoading) return <main></main>;
@@ -111,16 +98,18 @@ export default function Home() {
         ))}
       </div>
       <div className={styles.container}>
-        {checkPositions.map((positions, index) => (
-          <Image
-            key={index}
-            src={index != 6 ? check_1Image : check_2Image}
-            className={styles.popup}
-            alt="B1"
-            priority
-            style={{ marginTop: positions.top, marginLeft: positions.left }}
-          />
-        ))}
+        {(!isMobile ? checkPositions : checkPositions_sf).map(
+          (positions, index) => (
+            <Image
+              key={index}
+              src={index != 6 ? check_1Image : check_2Image}
+              className={styles.popup}
+              alt="B1"
+              priority
+              style={{ marginTop: positions.top, marginLeft: positions.left }}
+            />
+          )
+        )}
       </div>
       <div className={styles.container}>
         {tapEvents.map((data, index) => (
@@ -194,14 +183,24 @@ export default function Home() {
   );
 }
 
-const isCommentVisible = (position: number, scrollX: number): boolean => {
+const isCommentVisible = (
+  position: number,
+  scrollX: number,
+  previouslyVisible: boolean = false
+): boolean => {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
   const leftInPx = (position / 100) * viewportHeight;
   const centerAreaStart = scrollX + (viewportWidth - viewportWidth * 0.9) / 2;
   const centerAreaEnd = scrollX + (viewportWidth + viewportWidth * 0.75) / 2;
-
-  return leftInPx >= centerAreaStart && leftInPx <= centerAreaEnd;
+  const margin = 20;
+  if (previouslyVisible) {
+    return (
+      leftInPx >= centerAreaStart - margin && leftInPx <= centerAreaEnd + margin
+    );
+  } else {
+    return leftInPx >= centerAreaStart && leftInPx <= centerAreaEnd;
+  }
 };
 
 const mainImages = [
@@ -220,58 +219,58 @@ const mainImages = [
 const comments = [
   {
     src: comment_1,
-    height: "5vh",
-    marginTop: "63.8vh",
-    marginLeft: "102vh",
+    height: "5svh",
+    marginTop: "63.8svh",
+    marginLeft: "102svh",
     position: 102,
   },
   {
     src: comment_2,
-    height: "5.5vh",
-    marginTop: "61vh",
-    marginLeft: "39.5vh",
+    height: "5.5svh",
+    marginTop: "61svh",
+    marginLeft: "39.5svh",
     position: 165,
   },
   {
     src: comment_3,
-    height: "5.6vh",
-    marginTop: "47.5vh",
-    marginLeft: "56.2vh",
+    height: "5.6svh",
+    marginTop: "47.5svh",
+    marginLeft: "56.2svh",
     position: 237.5,
   },
   {
     src: comment_4,
-    height: "5.5vh",
-    marginTop: "61vh",
-    marginLeft: "12vh",
+    height: "5.5svh",
+    marginTop: "61svh",
+    marginLeft: "12svh",
     position: 277,
   },
   {
     src: comment_5,
-    height: "5.7vh",
-    marginTop: "67.5vh",
-    marginLeft: "13vh",
+    height: "5.7svh",
+    marginTop: "67.5svh",
+    marginLeft: "13svh",
     position: 311,
   },
   {
     src: comment_6,
-    height: "5.5vh",
-    marginTop: "51.5vh",
-    marginLeft: "70.2vh",
+    height: "5.5svh",
+    marginTop: "51.5svh",
+    marginLeft: "70.2svh",
     position: 404,
   },
   {
     src: comment_7,
-    height: "5.4vh",
-    marginTop: "77vh",
-    marginLeft: "19vh",
+    height: "5.4svh",
+    marginTop: "77svh",
+    marginLeft: "19svh",
     position: 443.6,
   },
   {
     src: comment_8,
-    height: "5.5vh",
-    marginTop: "56.3vh",
-    marginLeft: "119.5vh",
+    height: "5.5svh",
+    marginTop: "56.3svh",
+    marginLeft: "119.5svh",
     position: 583,
   },
 ];
@@ -279,34 +278,64 @@ const comments = [
 const checkPositions = [
   {
     top: "5vh",
-    left: "170vh",
+    left: "170svh",
   },
   {
-    top: "17vh",
-    left: "99vh",
+    top: "17svh",
+    left: "99svh",
   },
   {
-    top: "5vh",
-    left: "42vh",
+    top: "5svh",
+    left: "42svh",
   },
   {
-    top: "13vh",
-    left: "78vh",
+    top: "13svh",
+    left: "78svh",
   },
   {
-    top: "5vh",
-    left: "32vh",
+    top: "5svh",
+    left: "32svh",
   },
   {
-    top: "20vh",
-    left: "100vh",
+    top: "20svh",
+    left: "100svh",
   },
   {
-    top: "7vh",
-    left: "73vh",
+    top: "7svh",
+    left: "73svh",
   },
 ];
 
+const checkPositions_sf = [
+  {
+    top: "4vh",
+    left: "167svh",
+  },
+  {
+    top: "16svh",
+    left: "97svh",
+  },
+  {
+    top: "4svh",
+    left: "38svh",
+  },
+  {
+    top: "13svh",
+    left: "78svh",
+  },
+  {
+    top: "4svh",
+    left: "27svh",
+  },
+  {
+    top: "18svh",
+    left: "98svh",
+  },
+  {
+    top: "5svh",
+    left: "71svh",
+  },
+];
 const modalDatas = [
   {
     title: "NEXT LIVE",
@@ -364,39 +393,39 @@ const modalDatas = [
 
 const tapEvents = [
   {
-    width: "60vh",
-    height: "34vh",
-    top: "3.5vh",
-    left: "186vh",
+    width: "60svh",
+    height: "34svh",
+    top: "3.5svh",
+    left: "186svh",
   },
   {
-    width: "54.4vh",
-    height: "41.9vh",
-    top: "22vh",
-    left: "44.9vh",
+    width: "54.4svh",
+    height: "41.9svh",
+    top: "22svh",
+    left: "44.9svh",
   },
   {
-    width: "80.2vh",
-    height: "59vh",
-    top: "6vh",
-    left: "9.2vh",
+    width: "80.2svh",
+    height: "59svh",
+    top: "6svh",
+    left: "9.2svh",
   },
   {
-    width: "45.9vh",
-    height: "50.8vh",
-    top: "20.1vh",
-    left: "7vh",
+    width: "45.9svh",
+    height: "50.8svh",
+    top: "20.1svh",
+    left: "7svh",
   },
   {
-    width: "68.4vh",
-    height: "60.8vh",
-    top: "6.3vh",
-    left: "6.7vh",
+    width: "68.4svh",
+    height: "60.8svh",
+    top: "6.3svh",
+    left: "6.7svh",
   },
   {
-    width: "109.9vh",
-    height: "46vh",
-    top: "20vh",
-    left: "8.3vh",
+    width: "109.9svh",
+    height: "46svh",
+    top: "20svh",
+    left: "8.3svh",
   },
 ];
