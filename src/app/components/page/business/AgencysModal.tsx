@@ -45,7 +45,7 @@ const AgencysModal = ({ setModalOpen, isMobile }: AgencysModalProps) => {
     return !isMobile ? baseClassName : `${baseClassName} ${menuStyles.sf}`;
   };
   return (
-    <div className={menuStyles.main} onClick={handleCloseClick}>
+    <button className={menuStyles.main} onClick={handleCloseClick}>
       <div
         className={addMobileClass(styles.container)}
         onClick={(e) => e.stopPropagation()}
@@ -93,7 +93,7 @@ const AgencysModal = ({ setModalOpen, isMobile }: AgencysModalProps) => {
           ))}
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

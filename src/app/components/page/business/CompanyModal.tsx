@@ -41,7 +41,7 @@ const CompanyModal = ({
     return !isMobile ? baseClassName : `${baseClassName} ${menuStyles.sf}`;
   };
   return (
-    <div className={menuStyles.main} onClick={handleCloseClick}>
+    <button className={menuStyles.main} onClick={handleCloseClick}>
       <div
         className={addMobileClass(styles.container)}
         onClick={(e) => e.stopPropagation()}
@@ -91,7 +91,7 @@ const CompanyModal = ({
           <Image alt="メイン" src={mainImage} className={styles.main_image} />
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
