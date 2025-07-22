@@ -9,7 +9,6 @@ import tiktok from "../../assets/image/menu/tiktok.png";
 import since from "../../assets/image/menu/since.png";
 
 import styles from "../../styles/components/MenuModal.module.css";
-import { animateLevel } from "../../hooks/animations";
 
 type MenuModalProps = {
   setModalOpen: (value: boolean) => void;
@@ -18,8 +17,7 @@ type MenuModalProps = {
 
 const MenuModal = ({ setModalOpen, isMobile }: MenuModalProps) => {
   const pathname = usePathname();
-  const [isAnimation, setIsAnimation] = useState(false);
-  useEffect(() => animateLevel(setIsAnimation), []);
+
   const handleCloseClick = (e) => {
     e.stopPropagation();
     setModalOpen(false);
@@ -28,7 +26,7 @@ const MenuModal = ({ setModalOpen, isMobile }: MenuModalProps) => {
     return !isMobile ? baseClassName : `${baseClassName} ${styles.sf}`;
   };
   return (
-    <button className={styles.main} onClick={handleCloseClick}>
+    <div className={styles.main} onClick={handleCloseClick}>
       <div
         className={addMobileClass(styles.container)}
         onClick={(e) => e.stopPropagation()}
@@ -135,7 +133,7 @@ const MenuModal = ({ setModalOpen, isMobile }: MenuModalProps) => {
           </div>
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 
@@ -146,7 +144,7 @@ const tiktokUrl =
 
 const menuItems = [
   { href: "/", title: "TOP" },
-  { href: "/business", title: "BUSINESS", page: "none" },
+  { href: "/business", title: "BUSINESS" },
   { href: "https://note.com/albarise_inc", title: "BLOG" },
   { href: "/contact", title: "CONTACT", page: "none" },
   { href: "/recruit", title: "RECRUIT", page: "none" },
@@ -157,7 +155,7 @@ const menuItems = [
 const menuItems_sf = [
   { href: "/", title: "TOP" },
   { href: "/about", title: "ABOUT", page: "none" },
-  { href: "/business", title: "BUSINESS", page: "none" },
+  { href: "/business", title: "BUSINESS" },
   { href: "/work", title: "WORK", page: "none" },
   { href: "https://note.com/albarise_inc", title: "BLOG" },
   { href: "/contact", title: "CONTACT", page: "none" },

@@ -1,4 +1,5 @@
 export const metadata = {
+  metadataBase: new URL("https://albarise.jp/"), // 本番ドメイン
   title: "株式会社ALBARISE",
   description:
     "WEBマーケティング、SNSマーケティング、企業コンサルティング、制作についてのお問い合わせ、ご相談は弊社まで。",

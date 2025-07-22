@@ -54,7 +54,7 @@
 .title_container.sf {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   position: fixed;
   top: 22%;
   margin-left: 5vw;

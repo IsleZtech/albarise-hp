@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useWindowResize } from "./hooks/animations";
+import { useWindowResize } from "./hooks/useWindowResize";
 import Loading from "./components/commont/Loading";
 import SliderContainer from "./components/page/top/BottomSlider";
 import LogoImage from "./assets/image/logo_text.png";
@@ -16,6 +16,7 @@ import Image from "next/image";
 import { isVisible } from "@testing-library/user-event/dist/utils";
 import MenuModal from "./components/commont/MenuModal";
 import Link from "next/link";
+import { preloadImages } from "./hooks/useImagePreload";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -23,7 +24,7 @@ export default function Home() {
   const { landscape } = useWindowResize();
 
   useEffect(() => {
-    preloadImages([MainObject.src, SliderContents.src]).then(() => {
+    preloadImages([MainObject, SliderContents]).then(() => {
       runAnimationSequence(setAnimationState);
     });
   }, []);
@@ -87,20 +88,6 @@ export default function Home() {
       )}
     </main>
   );
-}
-
-function preloadImages(sources: string[]): Promise<void> {
-  return Promise.all(
-    sources.map(
-      (src) =>
-        new Promise<void>((resolve) => {
-          const img = new window.Image();
-          img.onload = () => resolve();
-          img.onerror = () => resolve(); // 失敗しても進める
-          img.src = src;
-        })
-    )
-  ).then(() => {});
 }
 
 // アニメーションステート管理関数
