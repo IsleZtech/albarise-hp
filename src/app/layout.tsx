@@ -28,7 +28,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <head></head>
+      <head>
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            html, body {
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background: transparent;
+            }
+          `
+        }} />
+      </head>
       <body>{children}</body>
     </html>
   );

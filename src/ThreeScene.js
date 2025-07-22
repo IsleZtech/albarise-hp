@@ -4,13 +4,16 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
-import { Cache } from 'three'; // Bổ sung
+import { Cache } from 'three'; // Additional import
 
 const ThreeScene = () => {
   const [isLoading, setIsLoading] = useState(true);
   const containerRef = useRef(null);
 
   useEffect(() => {
+    // Add threescene class to body when component mounts
+    document.body.classList.add('threescene');
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -58,50 +61,66 @@ const ThreeScene = () => {
     const options = [
       {
         path: '/models/クマ4.glb',
-        position: { x: 10, y: -11, z: 2 },
-        scale: { x: 3, y: 3, z: 4 },
-        timeScale: 1, // timespeed
+        position: { x: 10, y: -12, z: 2 }, // Target position when hitting ground
+        startPosition: { x: 10, y: 15, z: 2 }, // Start position for falling (unified)
+        scale: { x: 3, y: 3, z: 3 },
+        timeScale: 1,
         cameraZoom: 1,
         isLooping: false,
       },
       {
-        path: '/models/パソコン3.glb',
-        position: { x: 4, y: -11, z: 2 },
-        scale: { x: 3, y: 3, z: 4 },
-        timeScale: 1, // timespeed
+        path: '/models/パソコン4.glb',
+        position: { x: 4, y: -11, z: 2 }, // Target position when hitting ground
+        startPosition: { x: 4, y: 15, z: 2 }, // Start position for falling (unified)
+        scale: { x: 3, y: 3, z: 3 },
+        timeScale: 1,
         cameraZoom: 1,
         isLooping: false,
       },
       {
-        path: '/models/玉子7.glb',
-        position: { x: -10, y: -8, z: 1 },
-        scale: { x: 1.5, y: 1.5, z: 1 },
-        timeScale: 1, // timespeed
+        path: '/models/玉子8.glb',
+        position: { x: -20, y: -13, z: 10 }, // Target position when hitting ground
+        startPosition: { x: -10, y: 15, z: 5 }, // Start position for falling (unified)
+        scale: { x: 2, y: 2, z: 1 },
+        timeScale: 1,
         cameraZoom: 1,
         isLooping: false,
       },
       {
         path: '/models/ロゴ4.glb',
-        position: { x: 0, y: 0, z: -2 },
-        scale: { x: 3, y: 3, z: 3 },
-        timeScale: 1, // timespeed
-        cameraZoom: 5,
+        position: { x: 0, y: 0, z: -2 }, // Logo doesn't fall, fixed position
+        scale: { x: 4, y: 4, z: 4 },
+        timeScale: 1,
+        cameraZoom: 1,
         isLooping: true,
       },
     ];
 
     let loadedCount = 0;
+    const fallingObjects = []; // Array to store falling objects
+    const animationStartTime = Date.now(); // Animation start time
 
     options.forEach((option) => {
       loader.load(
         option.path,
         (gltf) => {
           const model = gltf.scene;
-          model.position.set(
-            option.position.x,
-            option.position.y,
-            option.position.z
-          );
+
+          // Set initial position
+          if (option.startPosition) {
+            model.position.set(
+              option.startPosition.x,
+              option.startPosition.y,
+              option.startPosition.z
+            );
+          } else {
+            model.position.set(
+              option.position.x,
+              option.position.y,
+              option.position.z
+            );
+          }
+
           model.scale.set(option.scale.x, option.scale.y, option.scale.z);
           camera.position.z = Math.max(
             camera.position.z,
@@ -109,6 +128,18 @@ const ThreeScene = () => {
           );
 
           scene.add(model);
+
+          // Add to falling objects array if has startPosition
+          if (option.startPosition && option.path !== '/models/ロゴ4.glb') {
+            fallingObjects.push({
+              model: model,
+              startY: option.startPosition.y,
+              targetY: option.position.y,
+              currentY: option.startPosition.y,
+              startTime: 0,
+              fallingDuration: 1.0 // Reduced to 1.0 second for faster falling to match animation speed
+            });
+          }
 
           if (gltf.animations.length > 0) {
             const mixer = new THREE.AnimationMixer(model);
@@ -119,7 +150,8 @@ const ThreeScene = () => {
                 ? THREE.LoopRepeat
                 : THREE.LoopOnce;
               action.clampWhenFinished = !option.isLooping;
-              action.timeScale = option.timeScale || 1.0;
+              // Increase animation speed for faster playback when hitting ground
+              action.timeScale = option.isLooping ? (option.timeScale || 1.0) : 2.5; // 2.5x faster for non-looping animations
             });
             mixers.push(mixer);
           }
@@ -127,7 +159,12 @@ const ThreeScene = () => {
           loadedCount++;
           if (loadedCount === options.length) {
             setIsLoading(false);
-            render(); // render lần đầu khi load xong
+            // Start simple falling animation for all objects simultaneously
+            const currentTime = Date.now();
+            fallingObjects.forEach(obj => {
+              obj.startTime = currentTime;
+            });
+            render();
           }
         },
         undefined,
@@ -142,9 +179,30 @@ const ThreeScene = () => {
       const delta = clock.getDelta();
       let needsRender = false;
 
+      // Update animation mixers
       mixers.forEach((mixer) => {
         mixer.update(delta);
         needsRender = true;
+      });
+
+      // Update simple falling effects for objects
+      const currentTime = Date.now();
+      fallingObjects.forEach((obj) => {
+        if (obj.startTime === 0) return; // Not started yet
+
+        const elapsed = (currentTime - obj.startTime) / 1000; // Time since start in seconds
+
+        if (elapsed < obj.fallingDuration) {
+          // Still falling - simple gravity effect
+          const progress = elapsed / obj.fallingDuration;
+          const easeProgress = progress * progress; // Natural acceleration due to gravity
+          obj.currentY = obj.startY + (obj.targetY - obj.startY) * easeProgress;
+          obj.model.position.y = obj.currentY;
+          needsRender = true;
+        } else {
+          // Finished falling - stay at target position
+          obj.model.position.y = obj.targetY;
+        }
       });
 
       if (controls.enabled) {
@@ -167,6 +225,9 @@ const ThreeScene = () => {
     };
 
     return () => {
+      // Remove threescene class from body when component unmounts
+      document.body.classList.remove('threescene');
+
       renderer.dispose();
       renderer.domElement.remove();
       controls.dispose();
