@@ -79,8 +79,8 @@ const ThreeScene = () => {
       },
       {
         path: '/models/玉子8.glb',
-        position: { x: -20, y: -13, z: 10 }, // Target position when hitting ground
-        startPosition: { x: -10, y: 15, z: 5 }, // Start position for falling (unified)
+        position: { x: -25, y: -13, z: 10 }, // Target position when hitting ground
+        startPosition: { x: -15, y: 15, z: 5 }, // Start position for falling (unified)
         scale: { x: 2, y: 2, z: 1 },
         timeScale: 1,
         cameraZoom: 1,
