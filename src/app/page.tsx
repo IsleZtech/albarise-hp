@@ -35,7 +35,11 @@ export default function Home() {
     return !isMobile ? baseClassName : `${baseClassName} ${styles.sf}`;
   };
   return (
-    <main className={styles.main} onClick={() => setIsMenuOpen(true)}>
+    <main
+      className={styles.main}
+      onClick={() => setIsMenuOpen(true)}
+      style={{ cursor: !isMenuOpen ? "none" : "default" }}
+    >
       {animationState <= 2 && (
         <Loading isFadeOut={animationState != 0} isMobile={isMobile} />
       )}

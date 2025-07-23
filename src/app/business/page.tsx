@@ -39,6 +39,7 @@ import CompanyModal from "../components/page/business/CompanyModal";
 import MenuModal from "../components/commont/MenuModal";
 import AgencysModal from "../components/page/business/AgencysModal";
 import { useHorizontalScrollWithMomentum } from "../hooks/useHorizontalScrollWithMomentum";
+import Link from "next/link";
 
 export default function Business() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -55,13 +56,12 @@ export default function Business() {
   useHorizontalScrollWithMomentum({ isDisabled, onScrollXChange: setScrollX });
 
   if (landscape === null) return <main></main>;
-  if (isLoading) return <main></main>;
 
   const isMobile = landscape == "mobile";
   const addMobileClass = (baseClassName: string) => {
     return !isMobile ? baseClassName : `${baseClassName} ${styles.sf}`;
   };
-
+  if (isLoading) return <Loading isMobile={isMobile} />;
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -131,22 +131,31 @@ export default function Business() {
           ></button>
         ))}
       </div>
-      <Image
-        src={LogoImage}
-        alt="logo"
-        priority
-        className={`${addMobileClass(homeStyles.logo_image)} ${
-          homeStyles.show
-        }`}
-      />
-      <Image
-        src={TiktokImage}
-        alt="TikTok"
-        priority
-        className={`${addMobileClass(homeStyles.tiktok_image)} ${
-          homeStyles.show
-        }`}
-      />
+      <Link href={"/"} onClick={(e) => e.stopPropagation()}>
+        <Image
+          src={LogoImage}
+          alt="logo"
+          priority
+          className={`${addMobileClass(homeStyles.logo_image)} ${
+            homeStyles.show
+          }`}
+        />
+      </Link>
+
+      <Link
+        href={"https://www.tiktok.com/@next_live_agency"}
+        target="_blank"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          src={TiktokImage}
+          alt="TikTok"
+          priority
+          className={`${addMobileClass(homeStyles.tiktok_image)} ${
+            homeStyles.show
+          }`}
+        />
+      </Link>
       <button
         onClick={(e) => {
           e.preventDefault();
