@@ -23,6 +23,7 @@ import Agent17 from "../../../assets/image/business/agent_17.png";
 import AgentButton from "../../../assets/image/business/agent_button.png";
 import Image from "next/image";
 import Link from "next/link";
+import { agentDatas } from "../../../business/const";
 
 type AgencysModalProps = {
   setModalOpen: (value: number | null) => void;
@@ -93,23 +94,3 @@ const AgencysModal = ({ setModalOpen, isMobile }: AgencysModalProps) => {
 };
 
 export default AgencysModal;
-
-const agentDatas = [
-  { image: Agent1, name: "A LIVE", helf: "" },
-  { image: Agent2, name: "HERO’ZZ", helf: "" },
-  { image: Agent3, name: "PROST LIVE", helf: "" },
-  { image: Agent4, name: "黒猫と彼女と", helf: "" },
-  { image: Agent5, name: "toridori LIVE", helf: "" },
-  { image: Agent6, name: "最終未来少女", helf: "" },
-  { image: Agent7, name: "CANDYS LIVE", helf: "" },
-  { image: Agent8, name: "RIP", helf: "" },
-  { image: Agent9, name: "Bambi Promotion", helf: "" },
-  { image: Agent10, name: "GLAP", helf: "" },
-  { image: Agent11, name: "NGG", helf: "" },
-  { image: Agent12, name: "Value Creation.", helf: "" },
-  { image: Agent13, name: "Zilumina", helf: "" },
-  { image: Agent14, name: "H3", helf: "" },
-  { image: Agent15, name: "Dairi", helf: "" },
-  { image: Agent16, name: "LVC", helf: "" },
-  { image: Agent17, name: "RGH", helf: "" },
-];
